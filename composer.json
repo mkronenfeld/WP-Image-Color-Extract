@@ -1,0 +1,34 @@
+{
+  "name": "WP Image Color Palette",
+  "description": "Extracts colors from an image and generates a color palette against a whitelist of colors.",
+  "keywords": ["wordpress", "plugin", "color", "palette"],
+  "homepage": "https://github.com/mkronenfeld/wp-image-color-palette",
+  "license": "GNU GENERAL PUBLIC LICENSE Version 2",
+  "authors": [
+    {
+      "name": "Marvin Kronenfeld",
+      "homepage": "https://wp-styles.de"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "image-palette",
+        "version": "3.0",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/mkronenfeld/ImagePalette/archive/v3.0.zip"
+        },
+        "require" : {
+          "composer/installers": "~v1.0.6"
+        }
+      }
+    }
+  ],
+  "require": {
+    "php": ">=5.3.0",
+    "image-palette": "3.0"
+  }
+}
