@@ -7,7 +7,6 @@
  * @since      1.0.0
  *
  * @package    Wpip
- * @subpackage Wpip/includes
  */
 
 /**
@@ -17,7 +16,6 @@
  *
  * @since      1.0.0
  * @package    Wpip
- * @subpackage Wpip/includes
  * @author     Marvin Kronenfeld (WP-Styles.de) <hello@wp-styles.de>
  */
 class Wpip_Deactivator {

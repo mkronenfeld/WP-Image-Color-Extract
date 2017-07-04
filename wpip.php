@@ -59,12 +59,7 @@ function deactivate_wpip() {
 register_activation_hook( __FILE__, 'activate_wpip' );
 register_deactivation_hook( __FILE__, 'deactivate_wpip' );
 
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
 require WPIP_PATH . 'includes/class-wpip.php';
-
 require WPIP_PATH . 'includes/wpip-functions.php';
 
 /**
@@ -77,8 +72,8 @@ require WPIP_PATH . 'includes/wpip-functions.php';
  * @since    1.0.0
  */
 function run_wpip() {
-
 	$plugin = new Wpip();
 	$plugin->run();
 }
+
 run_wpip();

@@ -10,7 +10,6 @@
  * @since      1.0.0
  *
  * @package    Wpip
- * @subpackage Wpip/includes
  */
 
 /**
@@ -24,7 +23,6 @@
  *
  * @since      1.0.0
  * @package    Wpip
- * @subpackage Wpip/includes
  * @author     Marvin Kronenfeld (WP-Styles.de) <hello@wp-styles.de>
  */
 class Wpip {
@@ -35,7 +33,7 @@ class Wpip {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Wpip_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Wpip_Loader $loader Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -44,7 +42,7 @@ class Wpip {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 * @var      string $plugin_name The string used to uniquely identify this plugin.
 	 */
 	protected $plugin_name;
 
@@ -53,7 +51,7 @@ class Wpip {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
+	 * @var      string $version The current version of the plugin.
 	 */
 	protected $version;
 
@@ -67,15 +65,11 @@ class Wpip {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-
 		$this->plugin_name = 'wpip';
-		$this->version = '1.0.0';
+		$this->version     = '1.0.0';
 
 		$this->load_dependencies();
-		$this->set_locale();
 		$this->define_admin_hooks();
-		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -84,9 +78,7 @@ class Wpip {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Wpip_Loader. Orchestrates the hooks of the plugin.
-	 * - Wpip_i18n. Defines internationalization functionality.
 	 * - Wpip_Admin. Defines all hooks for the admin area.
-	 * - Wpip_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -95,49 +87,10 @@ class Wpip {
 	 * @access   private
 	 */
 	private function load_dependencies() {
-
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
 		require_once WPIP_PATH . 'includes/class-wpip-loader.php';
-
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once WPIP_PATH . 'includes/class-wpip-i18n.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the admin area.
-		 */
 		require_once WPIP_PATH . 'admin/class-wpip-admin.php';
 
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once WPIP_PATH . 'public/class-wpip-public.php';
-
 		$this->loader = new Wpip_Loader();
-
-	}
-
-	/**
-	 * Define the locale for this plugin for internationalization.
-	 *
-	 * Uses the Wpip_i18n class in order to set the domain and to register the hook
-	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function set_locale() {
-
-		$plugin_i18n = new Wpip_i18n();
-
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
@@ -148,28 +101,13 @@ class Wpip {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-
 		$plugin_admin = new Wpip_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		// add_action('add_attachment', 'update_attachment_color_dominance', 10, 1);
+		// add_action( 'save_post', 'my_save_post_function', 10, 3 );
 
-	}
-
-	/**
-	 * Register all of the hooks related to the public-facing functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function define_public_hooks() {
-
-		$plugin_public = new Wpip_Public( $this->get_plugin_name(), $this->get_version() );
-
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
+		$this->loader->add_action( 'add_attachment', $plugin_admin, 'add_attachment' );
+		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post' );
 	}
 
 	/**
