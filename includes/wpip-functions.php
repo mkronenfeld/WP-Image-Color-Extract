@@ -10,7 +10,11 @@ if ( ! function_exists( 'wpip_get_image_color' ) ) {
 	 *
 	 * @return string|null
 	 */
-	function wpip_get_image_color( $file, $precision = 50, $library = 'gd' ) {
+	function wpip_get_image_color(
+		$file,
+		$precision = WPIP_PRECISION,
+		$library = WPIP_LIBRARY
+	) {
 		$color_map = wpip_get_image_colors( $file, $precision, 1, $library );
 
 		return array_shift( $color_map );
@@ -28,7 +32,12 @@ if ( ! function_exists( 'wpip_get_image_colors' ) ) {
 	 *
 	 * @return array
 	 */
-	function wpip_get_image_colors( $file, $precision = 50, $palette_length = 3, $library = 'gd' ) {
+	function wpip_get_image_colors(
+		$file,
+		$precision = WPIP_PRECISION,
+		$palette_length = WPIP_PALETTE_LENGTH,
+		$library = WPIP_LIBRARY
+	) {
 		if ( ! wpip_is_config_valid() ) {
 			return [];
 		}
@@ -36,6 +45,7 @@ if ( ! function_exists( 'wpip_get_image_colors' ) ) {
 		$class_map = [
 			'vendor/image-palette/src/Color.php',
 			'vendor/image-palette/src/Exception/Exception.php',
+			'vendor/image-palette/src/Exception/UnsupportedFileTypeException.php',
 			'vendor/image-palette/src/ImagePalette.php'
 		];
 
@@ -52,6 +62,20 @@ if ( ! function_exists( 'wpip_get_image_colors' ) ) {
 		}
 
 		return $color_map_sanitized;
+	}
+}
+
+if ( ! function_exists( 'wpip_get_post_thumbnail_color_rgb' ) ) {
+	/**
+	 * Gets the main rgb color from a post.
+	 *
+	 * @param int|WP_Post $post
+	 *
+	 * @return string
+	 */
+	function wpip_get_post_thumbnail_color_rgb( $post ) {
+		$_post = get_post( $post );
+		return get_post_meta( $_post->ID, WPIP_POST_META_KEY_COLOR_RGB, true );
 	}
 }
 

@@ -103,11 +103,7 @@ class Wpip {
 	private function define_admin_hooks() {
 		$plugin_admin = new Wpip_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		// add_action('add_attachment', 'update_attachment_color_dominance', 10, 1);
-		// add_action( 'save_post', 'my_save_post_function', 10, 3 );
-
-		$this->loader->add_action( 'add_attachment', $plugin_admin, 'add_attachment' );
-		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post' );
+		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post', 10, 3 );
 	}
 
 	/**

@@ -25,7 +25,6 @@
  * Domain Path:       /languages
  */
 
-// If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
@@ -36,6 +35,30 @@ if ( ! defined( 'WPIP_FILE' ) ) {
 
 if ( ! defined( 'WPIP_PATH' ) ) {
 	define( 'WPIP_PATH', plugin_dir_path( WPIP_FILE ) );
+}
+
+if ( ! defined( 'WPIP_POST_TYPES' ) ) {
+	define( 'WPIP_POST_TYPES', [ 'post' ] );
+}
+
+if ( ! defined( 'WPIP_POST_META_KEY_COLOR_RGB' ) ) {
+	define( 'WPIP_POST_META_KEY_COLOR_RGB', 'wpip_color_rgb' );
+}
+
+if ( ! defined( 'WPIP_PATH' ) ) {
+	define( 'WPIP_PATH', plugin_dir_path( WPIP_FILE ) );
+}
+
+if (! defined( 'WPIP_PRECISION' ) ) {
+	define( 'WPIP_PRECISION', 50 );
+}
+
+if (! defined( 'WPIP_PALETTE_LENGTH' ) ) {
+	define( 'WPIP_PALETTE_LENGTH', 3 );
+}
+
+if (! defined( 'WPIP_LIBRARY' ) ) {
+	define( 'WPIP_LIBRARY', 'gd' );
 }
 
 /**
