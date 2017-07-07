@@ -8,6 +8,8 @@ Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
+Gets your attachment's dominant colors.
+
 == Description ==
 
 = Features: =
@@ -16,9 +18,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Installation ==
 
-1. Upload the plugin folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Check the Debug information on the 'Image Color Palette' page in your 'Tools' menu.
+=== From within WordPress ===
+
+1. Visit 'Plugins > Add New'
+2. Search for 'WP Image Color Palette'
+3. Activate WP Image Color Palette from your Plugins page.
+Go to “after activation” below.
+
+=== Manually ===
+
+1. Upload the `wp-image-color-palette` to the `/wp-content/plugins/` directory
+2. Activate the WP Image Color Palette plugin through the 'Plugins' menu in WordPress
+3. Go to "after activation" below.
+
+=== After activation ===
+
+1. Visit the 'Image Color Palette' page in your 'Tools' menu.
+2. Check the Debug information. If everything looks good, you are ready to off.
 
 == Frequently Asked Questions ==
 
@@ -40,10 +56,16 @@ A functionality for a bulk update is already on the roadmap.
 
 == Changelog ==
 
+= 1.2 =
+
+Release Date: ???
+
+* Enhancements
+    * ...
+
 = 1.1 =
 
-* Added the 'Image Color Palette' settings page to the 'Tools' menu.
+Release Date: July 7th, 2017
 
-= 1.0 =
-
-* Initial commit.
+* Enhancements
+	* Added the 'Image Color Palette' settings page to the 'Tools' menu.

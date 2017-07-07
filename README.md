@@ -9,9 +9,11 @@ While the documentation for the WP Image Color Palette plugin can be found on [W
 Installation
 ------------
 
-If you want to run the Git version for development though, you can set it up with [Composer](https://getcomposer.org/):
+If you want to run the Git version for development though, you can set it up with these commands:
 
 ```bash
+git clone https://github.com/mkronenfeld/WP-Image-Color-Palette.git
+cd WP-Image-Color-Palette
 composer install
 ```
 
