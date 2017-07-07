@@ -11,7 +11,7 @@
  * Plugin Name:       WP Image Color Palette
  * Plugin URI:        https://github.com/mkronenfeld/WP-Image-Color-Palette
  * Description:       Extracts colors from an attachment image and saves it to the post meta.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Author:            Marvin Kronenfeld
  * Author URI:        https://wp-styles.de
  * License:           GPL-2.0+
