@@ -1,12 +1,7 @@
 <?php
 
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
+ * WP Image Color Palette
  *
  * @link              https://wp-styles.de
  * @since             1.0.0
@@ -15,9 +10,9 @@
  * @wordpress-plugin
  * Plugin Name:       WP Image Color Palette
  * Plugin URI:        https://github.com/mkronenfeld/WP-Image-Color-Palette
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
- * Author:            Marvin Kronenfeld (WP-Styles.de)
+ * Description:       Extracts colors from an attachment image and saves it to the post meta.
+ * Version:           1.1.0
+ * Author:            Marvin Kronenfeld
  * Author URI:        https://wp-styles.de
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
