@@ -16,7 +16,7 @@
  * enqueue the admin-specific stylesheet and JavaScript.
  *
  * @package    Wpip
- * @author     Marvin Kronenfeld (WP-Styles.de) <hello@wp-styles.de>
+ * @author     Marvin Kronenfeld <hello@wp-styles.de>
  */
 class Wpip_Admin {
 

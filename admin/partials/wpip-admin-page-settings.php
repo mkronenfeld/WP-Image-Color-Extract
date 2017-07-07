@@ -7,7 +7,7 @@
  * @since      1.1.0
  *
  * @package    Wpip
- * @author     Marvin Kronenfeld (WP-Styles.de) <hello@wp-styles.de>
+ * @author     Marvin Kronenfeld <hello@wp-styles.de>
  */
 $config = wpip_is_config_valid( [], 'ARRAY_A' )
 ?>
