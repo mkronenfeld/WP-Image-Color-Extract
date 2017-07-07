@@ -17,7 +17,7 @@
  * run function to execute the list of actions and filters.
  *
  * @package    Wpip
- * @author     Marvin Kronenfeld (WP-Styles.de) <hello@wp-styles.de>
+ * @author     Marvin Kronenfeld <hello@wp-styles.de>
  */
 class Wpip_Loader {
 

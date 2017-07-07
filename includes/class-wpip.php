@@ -23,7 +23,7 @@
  *
  * @since      1.0.0
  * @package    Wpip
- * @author     Marvin Kronenfeld (WP-Styles.de) <hello@wp-styles.de>
+ * @author     Marvin Kronenfeld <hello@wp-styles.de>
  */
 class Wpip {
 
@@ -103,6 +103,7 @@ class Wpip {
 	private function define_admin_hooks() {
 		$plugin_admin = new Wpip_Admin( $this->get_plugin_name(), $this->get_version() );
 
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post', 10, 3 );
 	}
 
