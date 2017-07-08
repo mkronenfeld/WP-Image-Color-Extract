@@ -124,7 +124,7 @@ class Wpip_Admin {
 			$this->plugin_name,
 			$this->plugin_name . '-settings',
 			array(
-				'description' => __( '...', 'wpip' ),
+				'description' => __( 'Extract the color palette automatically for this post type.', 'wpip' ),
 				'id'          => 'post-types',
 				'selections'  => $post_types,
 				'value'       => ( isset ( $this->options['post-types'] ) ) ? $this->options['post-types'] : 'post'
@@ -139,7 +139,7 @@ class Wpip_Admin {
 			$this->plugin_name . '-settings',
 			array(
 				'description' =>
-					__( 'Extract the color palette automatically for there post types.',
+					__( 'The maximum amount of colors the algorithm will fetch from your images.',
 						'wpip' ),
 				'id'          => 'palette-length',
 				'value'       => 3,

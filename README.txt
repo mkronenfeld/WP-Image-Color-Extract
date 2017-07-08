@@ -62,10 +62,16 @@ Only post types with 'custom-fields' support can be selected. Check your post ty
 
 = 1.2 =
 
-Release Date: ???
+Release Date: Juli 9th, 2017
 
 * Enhancements
-    * ...
+    * Admin users can change several plugin options in the admin area.
+        * Post type, default: post
+        * Precision, default: 20
+        * Palette length, default: 3
+        * Graphics library, default: gd
+    * Improved FAQ section for the WordPress.org plugin page.
+
 
 = 1.1 =
 
