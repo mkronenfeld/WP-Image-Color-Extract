@@ -35,17 +35,5 @@ $config = wpip_is_config_valid( [ ], 'ARRAY_A' );
 		<?php else : ?>
 			<pre><?php var_dump( $config ); ?></pre>
 		<?php endif; ?>
-
-		<!-- @todo: Remove before the next plugin update. -->
-		<pre><?php var_dump( get_option( 'wpip-options' ) ); ?></pre>
-		<pre><?php var_dump(
-				WPIP_PATH,
-				WPIP_FILE,
-				WPIP_POST_META_KEY_COLOR_RGB,
-				WPIP_POST_TYPES,
-				WPIP_LIBRARY,
-				WPIP_PALETTE_LENGTH,
-				WPIP_PRECISION
-			); ?></pre>
 	</section>
 </div>
