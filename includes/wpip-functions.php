@@ -85,8 +85,6 @@ if ( ! function_exists( 'wpip_is_config_valid' ) ) {
 	 *
 	 * array['library'] string The image processing library.
 	 *
-	 * @todo: Outsource to class?
-	 *
 	 * @param array $query (See above)
 	 * @param string $output Optional. ARRAY_A (associative array) or BOOLEAN. Default: BOOLEAN.
 	 *

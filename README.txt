@@ -54,6 +54,10 @@ The color palette for a post is generated the moment you save a post or page. So
 
 A functionality for a bulk update is already on the roadmap.
 
+= Why is post type XY not in the post-type list? =
+
+Only post types with 'custom-fields' support can be selected. Check your post type with the [post_type_support](https://codex.wordpress.org/Function_Reference/post_type_supports) function.
+
 == Changelog ==
 
 = 1.2 =

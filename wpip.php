@@ -32,28 +32,38 @@ if ( ! defined( 'WPIP_PATH' ) ) {
 	define( 'WPIP_PATH', plugin_dir_path( WPIP_FILE ) );
 }
 
+$wpip_options = get_option( 'wpip-options' );
+
 if ( ! defined( 'WPIP_POST_TYPES' ) ) {
-	define( 'WPIP_POST_TYPES', [ 'post' ] );
+	define(
+		'WPIP_POST_TYPES',
+		( isset( $wpip_options['post-types'] ) ) ? [ $wpip_options['post-types'] ] : [ 'post' ]
+	);
 }
 
 if ( ! defined( 'WPIP_POST_META_KEY_COLOR_RGB' ) ) {
 	define( 'WPIP_POST_META_KEY_COLOR_RGB', 'wpip_color_rgb' );
 }
 
-if ( ! defined( 'WPIP_PATH' ) ) {
-	define( 'WPIP_PATH', plugin_dir_path( WPIP_FILE ) );
+if ( ! defined( 'WPIP_PRECISION' ) ) {
+	define(
+		'WPIP_PRECISION',
+		( isset( $wpip_options['precision'] ) ) ? $wpip_options['precision'] : 50
+	);
 }
 
-if (! defined( 'WPIP_PRECISION' ) ) {
-	define( 'WPIP_PRECISION', 50 );
+if ( ! defined( 'WPIP_PALETTE_LENGTH' ) ) {
+	define(
+		'WPIP_PALETTE_LENGTH',
+		( isset( $wpip_options['palette-length'] ) ) ? $wpip_options['palette-length'] : 3
+	);
 }
 
-if (! defined( 'WPIP_PALETTE_LENGTH' ) ) {
-	define( 'WPIP_PALETTE_LENGTH', 3 );
-}
-
-if (! defined( 'WPIP_LIBRARY' ) ) {
-	define( 'WPIP_LIBRARY', 'gd' );
+if ( ! defined( 'WPIP_LIBRARY' ) ) {
+	define(
+		'WPIP_LIBRARY',
+		( isset( $wpip_options['library'] ) ) ? $wpip_options['library'] : 'gd'
+	);
 }
 
 /**
