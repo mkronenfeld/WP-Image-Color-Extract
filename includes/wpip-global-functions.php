@@ -39,7 +39,7 @@ if ( ! function_exists( 'wpip_get_image_colors' ) ) {
 		$library = WPIP_LIBRARY
 	) {
 		if ( ! wpip_is_config_valid() ) {
-			return [];
+			return [ ];
 		}
 
 		$class_map = [
@@ -55,7 +55,7 @@ if ( ! function_exists( 'wpip_get_image_colors' ) ) {
 
 		$image_palette       = new \Makro\ImagePalette\ImagePalette( $file, $precision, $palette_length, $library );
 		$color_map           = $image_palette->getColors();
-		$color_map_sanitized = [];
+		$color_map_sanitized = [ ];
 
 		foreach ( $color_map as $color ) {
 			$color_map_sanitized[] = $color->toRgbString();
@@ -65,7 +65,7 @@ if ( ! function_exists( 'wpip_get_image_colors' ) ) {
 	}
 }
 
-if ( ! function_exists( 'wpip_get_post_thumbnail_color_rgb' ) ) {
+if ( ! function_exists( 'wpip_get_post_thumbnail_color' ) ) {
 	/**
 	 * Gets the main rgb color from a post.
 	 *
@@ -73,9 +73,25 @@ if ( ! function_exists( 'wpip_get_post_thumbnail_color_rgb' ) ) {
 	 *
 	 * @return string
 	 */
-	function wpip_get_post_thumbnail_color_rgb( $post ) {
+	function wpip_get_post_thumbnail_color( $post ) {
+		$color_map = wpip_get_post_thumbnail_colors( $post );
+
+		return array_shift( $color_map );
+	}
+}
+
+if ( ! function_exists( 'wpip_get_post_thumbnail_colors' ) ) {
+	/**
+	 * Gets the main rgb colors from a post.
+	 *
+	 * @param int|WP_Post $post
+	 *
+	 * @return array
+	 */
+	function wpip_get_post_thumbnail_colors( $post ) {
 		$_post = get_post( $post );
-		return get_post_meta( $_post->ID, WPIP_POST_META_KEY_COLOR_RGB, true );
+
+		return get_post_meta( $_post->ID, WPIP_POST_META_KEY_COLORS_RGB, true );
 	}
 }
 
@@ -90,8 +106,8 @@ if ( ! function_exists( 'wpip_is_config_valid' ) ) {
 	 *
 	 * @return array|bool
 	 */
-	function wpip_is_config_valid( $query = [], $output = 'BOOLEAN' ) {
-		$errors = [];
+	function wpip_is_config_valid( $query = [ ], $output = 'BOOLEAN' ) {
+		$errors = [ ];
 
 		if ( ini_get( 'allow_url_fopen' ) ) {
 			$error['fopen_allowed'] = false;
