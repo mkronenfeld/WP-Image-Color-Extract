@@ -4,7 +4,7 @@ Donate link: https://wp-styles.de
 Tags: color extraction, image palette, extraction, swatches, image, images, color, colour, palette, swatches, image swatches, extract, dominant, dominance
 Requires at least: 4.8
 Tested up to: 4.8
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,33 +18,37 @@ Gets your attachment's dominant colors.
 
 == Installation ==
 
-=== From within WordPress ===
-
 1. Visit 'Plugins > Add New'
-2. Search for 'WP Image Color Palette'
-3. Activate WP Image Color Palette from your Plugins page.
-Go to “after activation” below.
+1. Search for 'WP Image Color Palette'
+1. Activate WP Image Color Palette from your Plugins page.
+1. Go to “after activation” below.
 
 === Manually ===
 
 1. Upload the `wp-image-color-palette` to the `/wp-content/plugins/` directory
-2. Activate the WP Image Color Palette plugin through the 'Plugins' menu in WordPress
-3. Go to "after activation" below.
+1. Activate the WP Image Color Palette plugin through the 'Plugins' menu in WordPress
+1. Go to "after activation" below.
 
 === After activation ===
 
 1. Visit the 'Image Color Palette' page in your 'Tools' menu.
-2. Check the Debug information. If everything looks good, you are ready to off.
+1. Check the Debug information. If everything looks good, you are ready to off.
 
 == Frequently Asked Questions ==
 
-= Where can I find the colors in my post? =
+= How can I get the colors from my post? =
 
-Short: In the custom fields area.
+Short: `wpip_get_post_thumbnail_colors`
 
-WordPress has the ability to allow post authors to assign custom fields to a post. This extra information is known as meta-data. You will find your image swatches right there.
+You can find your image swatches in the post meta. There are two global php functions to get these values:
 
-If you don't see the custom fields widget at all you have to enable it for that particular post or page. Go to the "Screen Options" button at the top of your page and check the Custom Fields box.
+1. `wpip_get_post_thumbnail_color` gets the main rgb color from a post.
+1. `wpip_get_post_thumbnail_colors` gets the main rgb colors from a post.
+
+Advanced users may also like the following functions to extract the colors from any image the want in WordPress.
+
+1. `wpip_get_image_color` gets the main color from an image.
+1. `wpip_get_image_colors` gets the image color palette.
 
 = Why are there no colors in my post? =
 
@@ -60,6 +64,17 @@ Only post types with 'custom-fields' support can be selected. Check your post ty
 
 == Changelog ==
 
+= 1.3 =
+
+Release Date: ---
+
+* Enhancements
+    * Now the Image Color Palette plugin is really able to save the whole image palette!
+        * Added the global function `wpip_get_post_thumbnail_colors`
+        * Check the FAQ for more useful functions.
+    * Uninstalling the plugin now removes all of its post meta and plugin option.
+    * Minor performance improvements due to better conditional loading behaviour.
+
 = 1.2 =
 
 Release Date: Juli 9th, 2017
@@ -71,7 +86,6 @@ Release Date: Juli 9th, 2017
         * Palette length, default: 3
         * Graphics library, default: gd
     * Improved FAQ section for the WordPress.org plugin page.
-
 
 = 1.1 =
 
