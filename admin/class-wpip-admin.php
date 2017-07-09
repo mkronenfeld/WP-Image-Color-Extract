@@ -254,12 +254,29 @@ class Wpip_Admin {
 	 *
 	 * @since 1.2.0
 	 *
-	 * @param array $input
+	 * @param array $input The form input.
 	 *
 	 * @return array
 	 */
 	public function validate_options( $input ) {
-		return $input;
+		$sanitized_input = [ ];
+
+		foreach ( $input as $key => $value ) {
+			switch ( $key ) {
+				case 'post-types':
+					// breakthrough
+				case 'library':
+					$sanitized_input[ $key ] = sanitize_key( $value );
+					break;
+				case 'precision':
+					// breakthrough
+				case 'palette-length':
+					$sanitized_input[ $key ] = intval( $value );
+					break;
+			}
+		}
+
+		return $sanitized_input;
 	}
 
 }
