@@ -1,6 +1,6 @@
 <?php
 /**
- * Provide a admin area view for the plugin
+ * Provide a admin area view for the plugin.
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
@@ -9,11 +9,24 @@
  * @package    Wpip
  * @author     Marvin Kronenfeld <hello@wp-styles.de>
  */
-$config = wpip_is_config_valid( [], 'ARRAY_A' )
+
+$config = wpip_is_config_valid( [ ], 'ARRAY_A' );
 ?>
 
 <div class="wrap">
-	<h2 class="wp-heading-inline"><?php esc_html_e( get_admin_page_title() ); ?></h2>
+	<h1 class="wp-heading-inline"><?php esc_html_e( get_admin_page_title() ); ?></h1>
+
+	<section>
+		<form method="post" action="options.php">
+			<?php
+			settings_fields( $this->plugin_name . '-options' );
+			do_settings_sections( $this->plugin_name );
+			submit_button( __( 'Save Settings', 'wpip' ) );
+			?>
+		</form>
+	</section>
+
+	<hr>
 
 	<section>
 		<h3><?php _e( 'Debug information', 'wpip' ); ?></h3>

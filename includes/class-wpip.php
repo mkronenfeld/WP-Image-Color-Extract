@@ -66,10 +66,13 @@ class Wpip {
 	 */
 	public function __construct() {
 		$this->plugin_name = 'wpip';
-		$this->version     = '1.0.0';
+		$this->version     = '1.2.0';
 
 		$this->load_dependencies();
-		$this->define_admin_hooks();
+
+		if ( is_admin() ) {
+			$this->define_admin_hooks();
+		}
 	}
 
 	/**
@@ -79,6 +82,7 @@ class Wpip {
 	 *
 	 * - Wpip_Loader. Orchestrates the hooks of the plugin.
 	 * - Wpip_Admin. Defines all hooks for the admin area.
+	 * - Wpip_Fields.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -88,7 +92,11 @@ class Wpip {
 	 */
 	private function load_dependencies() {
 		require_once WPIP_PATH . 'includes/class-wpip-loader.php';
-		require_once WPIP_PATH . 'admin/class-wpip-admin.php';
+
+		if ( is_admin() ) {
+			require_once WPIP_PATH . 'admin/class-wpip-admin.php';
+			require_once WPIP_PATH . 'admin/class-wpip-fields.php';
+		}
 
 		$this->loader = new Wpip_Loader();
 	}
@@ -104,6 +112,14 @@ class Wpip {
 		$plugin_admin = new Wpip_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
+
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_fields' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_sections' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
+		//$this->loader->add_action( 'admin_init', $plugin_admin, 'admin_notices_init' );
+
+		//$this->loader->add_action( 'admin_notices', $plugin_admin, 'display_admin_notices' );
+
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post', 10, 3 );
 	}
 
