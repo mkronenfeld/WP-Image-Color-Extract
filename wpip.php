@@ -41,8 +41,8 @@ if ( ! defined( 'WPIP_POST_TYPES' ) ) {
 	);
 }
 
-if ( ! defined( 'WPIP_POST_META_KEY_COLOR_RGB' ) ) {
-	define( 'WPIP_POST_META_KEY_COLOR_RGB', 'wpip_color_rgb' );
+if ( ! defined( 'WPIP_POST_META_KEY_COLORS_RGB' ) ) {
+	define( 'WPIP_POST_META_KEY_COLORS_RGB', 'wpip_colors_rgb' );
 }
 
 if ( ! defined( 'WPIP_PRECISION' ) ) {
@@ -88,7 +88,8 @@ register_activation_hook( __FILE__, 'activate_wpip' );
 register_deactivation_hook( __FILE__, 'deactivate_wpip' );
 
 require WPIP_PATH . 'includes/class-wpip.php';
-require WPIP_PATH . 'includes/wpip-functions.php';
+require WPIP_PATH . 'includes/wpip-global-functions.php';
+require WPIP_PATH . 'includes/wpip-deprecated-functions.php';
 
 /**
  * Begins execution of the plugin.

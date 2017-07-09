@@ -229,10 +229,10 @@ class Wpip_Admin {
 	 */
 	public function save_post( $post_ID, $post, $update ) {
 		if ( in_array( $post->post_type, WPIP_POST_TYPES ) && has_post_thumbnail( $post_ID ) ) {
-			$file  = get_the_post_thumbnail_url( $post_ID, 'post-thumbnail' );
-			$color = wpip_get_image_color( $file );
+			$file      = get_the_post_thumbnail_url( $post_ID, 'post-thumbnail' );
+			$color_map = wpip_get_image_colors( $file );
 
-			update_post_meta( $post_ID, WPIP_POST_META_KEY_COLOR_RGB, $color );
+			update_post_meta( $post_ID, WPIP_POST_META_KEY_COLORS_RGB, $color_map );
 		}
 	}
 
