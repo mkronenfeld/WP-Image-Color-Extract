@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin activation
  *
@@ -30,5 +29,4 @@ class Wpip_Activator {
 	public static function activate() {
 
 	}
-
 }

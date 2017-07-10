@@ -1,5 +1,4 @@
 <?php
-
 if ( ! function_exists( 'wpip_get_image_color' ) ) {
 	/**
 	 * Gets the main color from an image.

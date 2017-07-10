@@ -1,5 +1,4 @@
 <?php
-
 if ( ! function_exists( 'wpip_get_post_thumbnail_color_rgb' ) ) {
 	/**
 	 * Gets the main rgb color from a post.

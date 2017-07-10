@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin deactivation
  *
@@ -30,5 +29,4 @@ class Wpip_Deactivator {
 	public static function deactivate() {
 
 	}
-
 }

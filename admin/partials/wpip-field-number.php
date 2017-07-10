@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Input type number template.
  *

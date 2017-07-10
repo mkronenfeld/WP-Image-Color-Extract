@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The fields generator.
  *
@@ -121,5 +120,4 @@ class Wpip_Fields {
 
 		require( $this->field_path . '-field-select.php' );
 	}
-
 }
