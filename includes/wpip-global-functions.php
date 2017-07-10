@@ -14,9 +14,14 @@ if ( ! function_exists( 'wpip_get_image_color' ) ) {
 		$precision = WPIP_PRECISION,
 		$library = WPIP_LIBRARY
 	) {
+		$color     = '';
 		$color_map = wpip_get_image_colors( $file, $precision, 1, $library );
 
-		return array_shift( $color_map );
+		if ( is_array( $color_map ) ) {
+			$color = array_shift( $color_map );
+		}
+
+		return $color;
 	}
 }
 
@@ -73,9 +78,14 @@ if ( ! function_exists( 'wpip_get_post_thumbnail_color' ) ) {
 	 * @return string
 	 */
 	function wpip_get_post_thumbnail_color( $post ) {
+		$color     = '';
 		$color_map = wpip_get_post_thumbnail_colors( $post );
 
-		return array_shift( $color_map );
+		if ( is_array( $color_map ) ) {
+			$color = array_shift( $color_map );
+		}
+
+		return $color;
 	}
 }
 
