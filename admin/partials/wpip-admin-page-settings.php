@@ -35,5 +35,7 @@ $config = wpip_is_config_valid( [ ], 'ARRAY_A' );
 		<?php else : ?>
 			<pre><?php var_dump( $config ); ?></pre>
 		<?php endif; ?>
+		<pre><?php var_dump( get_option( 'wpip-options' ) ); ?></pre>
+
 	</section>
 </div>

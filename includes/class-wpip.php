@@ -66,7 +66,7 @@ class Wpip {
 	 */
 	public function __construct() {
 		$this->plugin_name = 'wpip';
-		$this->version     = '1.2.0';
+		$this->version     = '1.3.0';
 
 		$this->load_dependencies();
 		$this->define_public_hooks();
