@@ -83,8 +83,8 @@ function deactivate_wpip() {
 	Wpip_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_wpip' );
-register_deactivation_hook( __FILE__, 'deactivate_wpip' );
+register_activation_hook( WPIP_FILE, 'activate_wpip' );
+register_deactivation_hook( WPIP_FILE, 'deactivate_wpip' );
 
 require WPIP_PATH . 'includes/class-wpip.php';
 
