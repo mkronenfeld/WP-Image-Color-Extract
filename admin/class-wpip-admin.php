@@ -152,7 +152,7 @@ class Wpip_Admin {
 			$this->plugin_name . '-settings',
 			array(
 				'description' =>
-					__( 'By default, the plugin will analyse every 20th pixel. This is a performance-to-time decision.',
+					__( 'By default, the plugin will analyse every 20th pixel. Increase it up to 150 to receive faster but less precise results.',
 						'wpip' ),
 				'id'          => 'precision',
 				'value'       => ( isset ( $this->options['precision'] ) ) ? $this->options['precision'] : 20,
