@@ -45,7 +45,7 @@ You can find your image swatches in the post meta. There are two global php func
 1. `wpip_get_post_thumbnail_color` gets the main rgb color from a post.
 1. `wpip_get_post_thumbnail_colors` gets the main rgb colors from a post.
 
-Advanced users may also like the following functions to extract the colors from any image the want in WordPress.
+Advanced users may also like the following functions to extract the colors from any image they want in WordPress.
 
 1. `wpip_get_image_color` gets the main color from an image.
 1. `wpip_get_image_colors` gets the image color palette.
