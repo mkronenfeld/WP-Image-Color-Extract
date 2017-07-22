@@ -14,7 +14,26 @@ Gets your attachment's dominant colors.
 
 = Features: =
 
-* Extracts colors from an attachment image and saves it to the post meta.
+* Extracts colors from attachment images and saves it to the post meta.
+* Several php functions to receive the post meta or extract data from images on the fly.
+
+== PHP functions ==
+
+You can find your image swatches in the post meta. There are two global php functions to get these values:
+
+`wpip_get_post_thumbnail_color`
+Gets the main rgb color from a post.
+
+`wpip_get_post_thumbnail_colors`
+Gets the main rgb colors from a post.
+
+Advanced users may also like the following functions to extract the colors from any image they want in WordPress.
+
+`wpip_get_image_color`
+Gets the main color from an image.
+
+`wpip_get_image_colors`
+Gets the image color palette.
 
 == Installation ==
 
@@ -40,15 +59,7 @@ Gets your attachment's dominant colors.
 
 Short: `wpip_get_post_thumbnail_colors`
 
-You can find your image swatches in the post meta. There are two global php functions to get these values:
-
-1. `wpip_get_post_thumbnail_color` gets the main rgb color from a post.
-1. `wpip_get_post_thumbnail_colors` gets the main rgb colors from a post.
-
-Advanced users may also like the following functions to extract the colors from any image the want in WordPress.
-
-1. `wpip_get_image_color` gets the main color from an image.
-1. `wpip_get_image_colors` gets the image color palette.
+You can find a list of all functions in the PHP functions section.
 
 = Why are there no colors in my post? =
 
