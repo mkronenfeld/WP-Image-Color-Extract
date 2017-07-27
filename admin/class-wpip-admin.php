@@ -138,7 +138,7 @@ class Wpip_Admin {
 					__( 'The maximum amount of colors the algorithm will fetch from your images.',
 						'wpip' ),
 				'id'          => 'palette-length',
-				'value'       => 3,
+				'value'       => ( isset ( $this->options['palette-length'] ) ) ? $this->options['palette-length'] : 5,
 				'min'         => 1,
 				'max'         => 6
 			)

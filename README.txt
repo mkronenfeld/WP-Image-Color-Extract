@@ -4,7 +4,7 @@ Donate link: https://wp-styles.de
 Tags: color extraction, image palette, extraction, swatches, image, images, color, colour, palette, swatches, image swatches, extract, dominant, dominance
 Requires at least: 4.8
 Tested up to: 4.8
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,9 +75,16 @@ Only post types with 'custom-fields' support can be selected. Check your post ty
 
 == Changelog ==
 
+= 1.3.1 =
+
+Release Date: Juli 27th, 2017
+
+* Bugfixes
+    * Fixed the Palette length field in the admin area.
+
 = 1.3 =
 
-Release Date: ---
+Release Date: Juli 22nd, 2017
 
 * Enhancements
     * Now the Image Color Palette plugin is really able to save the whole image palette!
