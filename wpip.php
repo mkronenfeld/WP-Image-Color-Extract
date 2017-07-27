@@ -10,7 +10,7 @@
  * Plugin Name:       WP Image Color Palette
  * Plugin URI:        https://github.com/mkronenfeld/WP-Image-Color-Palette
  * Description:       Extracts colors from an attachment image and saves it to the post meta.
- * Version:           1.3.1
+ * Version:           1.4.0
  * Author:            Marvin Kronenfeld
  * Author URI:        https://wp-styles.de
  * License:           GPL-2.0+
@@ -20,8 +20,12 @@
  */
 
 if ( ! defined( 'WPINC' ) ) {
-	die;
+	header( 'Status: 403 Forbidden' );
+	header( 'HTTP/1.1 403 Forbidden' );
+	exit();
 }
+
+define( 'WPIP_VERSION', '1.4.0' );
 
 if ( ! defined( 'WPIP_FILE' ) ) {
 	define( 'WPIP_FILE', __FILE__ );
@@ -30,6 +34,8 @@ if ( ! defined( 'WPIP_FILE' ) ) {
 if ( ! defined( 'WPIP_PATH' ) ) {
 	define( 'WPIP_PATH', plugin_dir_path( WPIP_FILE ) );
 }
+
+/* Set plugin options */
 
 $wpip_options = get_option( 'wpip-options' );
 
@@ -54,7 +60,7 @@ if ( ! defined( 'WPIP_PRECISION' ) ) {
 if ( ! defined( 'WPIP_PALETTE_LENGTH' ) ) {
 	define(
 		'WPIP_PALETTE_LENGTH',
-		( isset( $wpip_options['palette-length'] ) ) ? $wpip_options['palette-length'] : 3
+		( isset( $wpip_options['palette-length'] ) ) ? $wpip_options['palette-length'] : 5
 	);
 }
 
@@ -64,6 +70,8 @@ if ( ! defined( 'WPIP_LIBRARY' ) ) {
 		( isset( $wpip_options['library'] ) ) ? $wpip_options['library'] : 'gd'
 	);
 }
+
+/* Plugin (de-)activation */
 
 /**
  * The code that runs during plugin activation.
@@ -83,10 +91,7 @@ function deactivate_wpip() {
 	Wpip_Deactivator::deactivate();
 }
 
-register_activation_hook( WPIP_FILE, 'activate_wpip' );
-register_deactivation_hook( WPIP_FILE, 'deactivate_wpip' );
-
-require WPIP_PATH . 'includes/class-wpip.php';
+/* Plugin loading */
 
 /**
  * Begins execution of the plugin.
@@ -98,8 +103,21 @@ require WPIP_PATH . 'includes/class-wpip.php';
  * @since    1.0.0
  */
 function run_wpip() {
+	require_once WPIP_PATH . 'includes/class-wpip.php';
+	require_once WPIP_PATH . 'includes/wpip-global-functions.php';
+	require_once WPIP_PATH . 'includes/wpip-deprecated-functions.php';
+	require_once WPIP_PATH . 'vendor/image-palette/src/Validator.php';
+
 	$plugin = new Wpip();
 	$plugin->run();
 }
 
-run_wpip();
+/* Hook into WP */
+
+// Activation and deactivation hook.
+register_activation_hook( WPIP_FILE, 'activate_wpip' );
+register_deactivation_hook( WPIP_FILE, 'deactivate_wpip' );
+
+if ( ! wp_installing() ) {
+	add_action( 'plugins_loaded', 'run_wpip' );
+}
