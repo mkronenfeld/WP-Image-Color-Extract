@@ -42,7 +42,9 @@ if ( ! function_exists( 'wpip_get_image_colors' ) ) {
 		$palette_length = WPIP_PALETTE_LENGTH,
 		$library = WPIP_LIBRARY
 	) {
-		if ( ! wpip_is_config_valid() ) {
+		$system_status = wpip_is_config_valid();
+
+		if ( ! $system_status['success'] ) {
 			return [ ];
 		}
 
@@ -81,7 +83,7 @@ if ( ! function_exists( 'wpip_get_post_thumbnail_color' ) ) {
 		$color     = '';
 		$color_map = wpip_get_post_thumbnail_colors( $post );
 
-		if ( is_array( $color_map ) ) {
+		if ( is_array( $color_map ) && ! empty( $color_map ) ) {
 			$color = array_shift( $color_map );
 		}
 
@@ -108,28 +110,13 @@ if ( ! function_exists( 'wpip_is_config_valid' ) ) {
 	/**
 	 * Checks if the server config is valid.
 	 *
-	 * array['library'] string The image processing library.
-	 *
-	 * @param array $query (See above)
-	 * @param string $output Optional. ARRAY_A (associative array) or BOOLEAN. Default: BOOLEAN.
-	 *
-	 * @return array|bool
+	 * @return array
 	 */
-	function wpip_is_config_valid( $query = [ ], $output = 'BOOLEAN' ) {
-		$errors = [ ];
+	function wpip_is_config_valid() {
+		$validator        = new Wpip_Validator();
+		$protocol         = $validator->validate();
+		$protocol['html'] = $validator->get_html_error_list();
 
-		if ( ini_get( 'allow_url_fopen' ) ) {
-			$error['fopen_allowed'] = false;
-		}
-
-		if ( isset( $query['libary'] ) && extension_loaded( $query['libary'] ) ) {
-			$error[ 'extension_loaded_' . $query['libary'] ] = false;
-		}
-
-		if ( 'ARRAY_A' === $output ) {
-			return $errors;
-		}
-
-		return ( empty( $errors ) ) ? true : false;
+		return $protocol;
 	}
 }

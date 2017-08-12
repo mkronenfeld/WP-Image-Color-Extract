@@ -66,7 +66,7 @@ class Wpip {
 	 */
 	public function __construct() {
 		$this->plugin_name = 'wpip';
-		$this->version     = '1.3.1';
+		$this->version     = WPIP_VERSION;
 
 		$this->load_dependencies();
 		$this->define_public_hooks();
@@ -93,10 +93,9 @@ class Wpip {
 	 * @access   private
 	 */
 	private function load_dependencies() {
-		require_once WPIP_PATH . 'includes/wpip-global-functions.php';
-		require_once WPIP_PATH . 'includes/wpip-deprecated-functions.php';
 		require_once WPIP_PATH . 'includes/class-wpip-loader.php';
 		require_once WPIP_PATH . 'public/class-wpip-public.php';
+		require_once WPIP_PATH . 'public/class-wpip-validator.php';
 
 		if ( is_admin() ) {
 			require_once WPIP_PATH . 'admin/class-wpip-admin.php';

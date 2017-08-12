@@ -10,12 +10,35 @@
  * @author     Marvin Kronenfeld <hello@wp-styles.de>
  */
 
-$config = wpip_is_config_valid( [ ], 'ARRAY_A' );
+$system_status = wpip_is_config_valid();
 ?>
+<style>
+	.wpip .wpip__debug {
+		background-color: #fff;
+		border-radius: .5em;
+		font-size: .75em;
+		padding: 1em;
+	}
 
-<div class="wrap">
+	.wpip .wpip__status {
+		border-radius: 50%;
+		background-color: #888;
+		display: inline-block;
+		height: .8em;
+		line-height: inherit;
+		width: .8em;
+	}
+
+	.wpip .wpip__status.wpip__status--success {
+		background-color: #7ad03a;
+	}
+
+	.wpip .wpip__status.wpip__status--danger {
+		background-color: #dc3232;
+	}
+</style>
+<div class="wrap wpip">
 	<h1 class="wp-heading-inline"><?php esc_html_e( get_admin_page_title() ); ?></h1>
-
 	<section>
 		<form method="post" action="options.php">
 			<?php
@@ -25,17 +48,22 @@ $config = wpip_is_config_valid( [ ], 'ARRAY_A' );
 			?>
 		</form>
 	</section>
-
 	<hr>
-
 	<section>
-		<h3><?php _e( 'Debug information', 'wpip' ); ?></h3>
-		<?php if ( empty( $config ) ) : ?>
-			<p><?php _e( 'Everything looks fine. No problems at all.', 'wpip' ); ?></p>
+		<h3><?php _e( 'System Status', 'wpip' ); ?></h3>
+		<?php if ( $system_status['success'] ) : ?>
+			<p><i class="wpip__status wpip__status--success"
+			      title="<?php _e( 'Good', 'wpip' ); ?>"
+			      aria-hidden="true"></i> <?php _e( 'Everything looks fine. No problems at all.', 'wpip' ); ?></p>
 		<?php else : ?>
-			<pre><?php var_dump( $config ); ?></pre>
+			<p><i class="wpip__status wpip__status--danger"
+			      title="<?php _e( 'Bad', 'wpip' ); ?>"
+			      aria-hidden="true"></i> <?php _e( 'Uh-oh. There may be some issues with your system configuration:',
+					'wpip' ); ?></p>
+			<?php echo $system_status['html']; ?>
+			<p><?php _e( 'If you want to report an error on wordpress.org, please make sure to attach the following report:',
+					'wpip' ); ?></p>
 		<?php endif; ?>
-		<pre><?php var_dump( get_option( 'wpip-options' ) ); ?></pre>
-
+		<pre class="wpip__debug"><?php var_dump( $system_status['protocol'], get_option( 'wpip-options' ) ); ?></pre>
 	</section>
 </div>

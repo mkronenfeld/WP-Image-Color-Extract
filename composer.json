@@ -16,10 +16,10 @@
       "type": "package",
       "package": {
         "name": "image-palette",
-        "version": "3.0",
+        "version": "3.1.1",
         "dist": {
           "type": "zip",
-          "url": "https://github.com/mkronenfeld/ImagePalette/archive/v3.0.zip"
+          "url": "https://github.com/mkronenfeld/ImagePalette/archive/v3.1.1.zip"
         },
         "require" : {
           "composer/installers": "~v1.0.6"
@@ -29,6 +29,6 @@
   ],
   "require": {
     "php": ">=5.3.0",
-    "image-palette": "3.0"
+    "image-palette": "3.1.1"
   }
 }

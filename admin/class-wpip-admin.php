@@ -138,7 +138,7 @@ class Wpip_Admin {
 					__( 'The maximum amount of colors the algorithm will fetch from your images.',
 						'wpip' ),
 				'id'          => 'palette-length',
-				'value'       => ( isset ( $this->options['palette-length'] ) ) ? $this->options['palette-length'] : 5,
+				'value'       => ( isset ( $this->options['palette-length'] ) ) ? $this->options['palette-length'] : WPIP_PALETTE_LENGTH,
 				'min'         => 1,
 				'max'         => 6
 			)
@@ -152,11 +152,11 @@ class Wpip_Admin {
 			$this->plugin_name . '-settings',
 			array(
 				'description' =>
-					__( 'By default, the plugin will analyse every 20th pixel. Increase it up to 150 to receive faster but less precise results.',
+					__( 'By default, the plugin will analyse every 20th pixel. Increase it up to 100 to receive faster but less precise results.',
 						'wpip' ),
 				'id'          => 'precision',
-				'value'       => ( isset ( $this->options['precision'] ) ) ? $this->options['precision'] : 20,
-				'max'         => 150,
+				'value'       => ( isset ( $this->options['precision'] ) ) ? $this->options['precision'] : WPIP_PRECISION,
+				'max'         => 100,
 				'min'         => 10
 			)
 		);
@@ -176,7 +176,7 @@ class Wpip_Admin {
 					'gd'      => 'GD',
 					'imagick' => 'Imagick'
 				],
-				'value'       => ( isset ( $this->options['library'] ) ) ? $this->options['library'] : 'gd'
+				'value'       => ( isset ( $this->options['library'] ) ) ? $this->options['library'] : WPIP_LIBRARY
 			)
 		);
 	}
@@ -191,7 +191,7 @@ class Wpip_Admin {
 	public function register_sections() {
 		add_settings_section(
 			$this->plugin_name . '-settings',
-			__( 'Color extraction options', 'wpip' ),
+			__( 'Color Extraction Options', 'wpip' ),
 			null,
 			$this->plugin_name
 		);
