@@ -119,6 +119,12 @@ class Wpip {
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_sections' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'bulk_action_admin_notice' );
+
+		foreach ( WPIP_POST_TYPES as $post_type ) {
+			$this->loader->add_action( 'bulk_actions-edit-' . $post_type, $plugin_admin, 'register_bulk_actions' );
+			$this->loader->add_action( 'handle_bulk_actions-edit-' . $post_type, $plugin_admin, 'bulk_action_handler', 10, 3 );
+		}
 	}
 
 	/**

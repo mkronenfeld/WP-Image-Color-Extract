@@ -76,13 +76,63 @@ class Wpip_Admin {
 			),
 			apply_filters(
 				$this->plugin_name . '-settings-menu-title',
-				esc_html__( 'Image Color Palette', 'wpiip' )
+				esc_html__( 'Image Color Palette', 'wpip' )
 			),
 			'manage_options',
 			$this->plugin_name . '-settings',
 			array( $this, 'page_options' )
 
 		);
+	}
+
+	/**
+	 * Adds an action handler for the bulk actions.
+	 *
+	 * @since  1.4.0
+	 *
+	 * @param string $redirect_to Redirect location.
+	 * @param string $action_name The bulk action name.
+	 * @param array $post_ids A list of post IDs.
+	 *
+	 * @return string
+	 */
+	function bulk_action_handler( $redirect_to, $action_name, $post_ids ) {
+		if ( 'update_image_color_palette' === $action_name ) {
+			$wpip_public = new Wpip_Public();
+
+			foreach ( $post_ids as $post_id ) {
+				$wpip_public->save_post(
+					$post_id,
+					get_post( $post_id ),
+					true
+				);
+			}
+		}
+
+		$redirect_to = add_query_arg( 'bulk_updated_posts', count( $post_ids ), $redirect_to );
+
+		return $redirect_to;
+	}
+
+	/**
+	 * Adds an admin notice for the bulk actions.
+	 *
+	 * @since  1.4.0
+	 *
+	 * @return void
+	 */
+	function bulk_action_admin_notice() {
+		if ( ! empty( $_REQUEST['bulk_updated_posts'] ) ) {
+			$updated_count = intval( $_REQUEST['bulk_updated_posts'] );
+			printf( '<div id="message" class="updated fade">' .
+			        _n( 'Updated %s image color palette.',
+				        'Updated %s image color palettes.',
+				        $updated_count,
+				        'wpip'
+			        ) . '</div>',
+				$updated_count
+			);
+		}
 	}
 
 	/**
@@ -94,6 +144,21 @@ class Wpip_Admin {
 	 */
 	public function page_options() {
 		include( WPIP_PATH . 'admin/partials/wpip-admin-page-settings.php' );
+	}
+
+	/**
+	 * Registers the bulk actions.
+	 *
+	 * @since  1.4.0
+	 *
+	 * @param $bulk_actions
+	 *
+	 * @return array
+	 */
+	public function register_bulk_actions( $bulk_actions ) {
+		$bulk_actions['update_image_color_palette'] = __( 'Update the Image Color Palette', 'wpip' );
+
+		return $bulk_actions;
 	}
 
 	/**
