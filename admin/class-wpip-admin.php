@@ -76,13 +76,63 @@ class Wpip_Admin {
 			),
 			apply_filters(
 				$this->plugin_name . '-settings-menu-title',
-				esc_html__( 'Image Color Palette', 'wpiip' )
+				esc_html__( 'Image Color Palette', 'wpip' )
 			),
 			'manage_options',
 			$this->plugin_name . '-settings',
 			array( $this, 'page_options' )
 
 		);
+	}
+
+	/**
+	 * Adds an action handler for the bulk actions.
+	 *
+	 * @since  1.4.0
+	 *
+	 * @param string $redirect_to Redirect location.
+	 * @param string $action_name The bulk action name.
+	 * @param array $post_ids A list of post IDs.
+	 *
+	 * @return string
+	 */
+	function bulk_action_handler( $redirect_to, $action_name, $post_ids ) {
+		if ( 'update_image_color_palette' === $action_name ) {
+			$wpip_public = new Wpip_Public();
+
+			foreach ( $post_ids as $post_id ) {
+				$wpip_public->save_post(
+					$post_id,
+					get_post( $post_id ),
+					true
+				);
+			}
+		}
+
+		$redirect_to = add_query_arg( 'bulk_updated_posts', count( $post_ids ), $redirect_to );
+
+		return $redirect_to;
+	}
+
+	/**
+	 * Adds an admin notice for the bulk actions.
+	 *
+	 * @since  1.4.0
+	 *
+	 * @return void
+	 */
+	function bulk_action_admin_notice() {
+		if ( ! empty( $_REQUEST['bulk_updated_posts'] ) ) {
+			$updated_count = intval( $_REQUEST['bulk_updated_posts'] );
+			printf( '<div id="message" class="updated fade">' .
+			        _n( 'Updated %s image color palette.',
+				        'Updated %s image color palettes.',
+				        $updated_count,
+				        'wpip'
+			        ) . '</div>',
+				$updated_count
+			);
+		}
 	}
 
 	/**
@@ -94,6 +144,21 @@ class Wpip_Admin {
 	 */
 	public function page_options() {
 		include( WPIP_PATH . 'admin/partials/wpip-admin-page-settings.php' );
+	}
+
+	/**
+	 * Registers the bulk actions.
+	 *
+	 * @since  1.4.0
+	 *
+	 * @param $bulk_actions
+	 *
+	 * @return array
+	 */
+	public function register_bulk_actions( $bulk_actions ) {
+		$bulk_actions['update_image_color_palette'] = __( 'Update the Image Color Palette', 'wpip' );
+
+		return $bulk_actions;
 	}
 
 	/**
@@ -138,7 +203,7 @@ class Wpip_Admin {
 					__( 'The maximum amount of colors the algorithm will fetch from your images.',
 						'wpip' ),
 				'id'          => 'palette-length',
-				'value'       => ( isset ( $this->options['palette-length'] ) ) ? $this->options['palette-length'] : 5,
+				'value'       => ( isset ( $this->options['palette-length'] ) ) ? $this->options['palette-length'] : WPIP_PALETTE_LENGTH,
 				'min'         => 1,
 				'max'         => 6
 			)
@@ -147,17 +212,22 @@ class Wpip_Admin {
 		add_settings_field(
 			'wpip-precision',
 			__( 'Precision', 'wpip' ),
-			array( $fields, 'number' ),
+			array( $fields, 'select' ),
 			$this->plugin_name,
 			$this->plugin_name . '-settings',
 			array(
 				'description' =>
-					__( 'By default, the plugin will analyse every 20th pixel. Increase it up to 150 to receive faster but less precise results.',
+					__( 'Adjust the accuracy and performance of the analyzer.',
 						'wpip' ),
 				'id'          => 'precision',
-				'value'       => ( isset ( $this->options['precision'] ) ) ? $this->options['precision'] : 20,
-				'max'         => 150,
-				'min'         => 10
+				'selections'  => [
+					'10'  => '10 - slow but precise',
+					'15'  => '20',
+					'25'  => '30 - just right',
+					'75'  => '40',
+					'150' => '50 - fast but imprecise'
+				],
+				'value'       => ( isset ( $this->options['precision'] ) ) ? $this->options['precision'] : WPIP_PRECISION
 			)
 		);
 
@@ -176,7 +246,7 @@ class Wpip_Admin {
 					'gd'      => 'GD',
 					'imagick' => 'Imagick'
 				],
-				'value'       => ( isset ( $this->options['library'] ) ) ? $this->options['library'] : 'gd'
+				'value'       => ( isset ( $this->options['library'] ) ) ? $this->options['library'] : WPIP_LIBRARY
 			)
 		);
 	}
@@ -191,7 +261,7 @@ class Wpip_Admin {
 	public function register_sections() {
 		add_settings_section(
 			$this->plugin_name . '-settings',
-			__( 'Color extraction options', 'wpip' ),
+			__( 'Color Extraction Options', 'wpip' ),
 			null,
 			$this->plugin_name
 		);

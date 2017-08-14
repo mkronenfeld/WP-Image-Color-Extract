@@ -1,10 +1,10 @@
-=== Plugin Name ===
+=== WP Image Color Palette ===
 Contributors: mkronenfeld
 Donate link: https://wp-styles.de
 Tags: color extraction, image palette, extraction, swatches, image, images, color, colour, palette, swatches, image swatches, extract, dominant, dominance
 Requires at least: 4.8
 Tested up to: 4.8
-Stable tag: 1.3.1
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,18 +21,18 @@ Gets your attachment's dominant colors.
 
 You can find your image swatches in the post meta. There are two global php functions to get these values:
 
-`wpip_get_post_thumbnail_color`
+`wpip_get_post_thumbnail_color( int|WP_Post $post )`
 Gets the main rgb color from a post.
 
-`wpip_get_post_thumbnail_colors`
+`wpip_get_post_thumbnail_colors( int|WP_Post $post )`
 Gets the main rgb colors from a post.
 
 Advanced users may also like the following functions to extract the colors from any image they want in WordPress.
 
-`wpip_get_image_color`
+`wpip_get_image_color( string $file, int $precision = 20, int $palette_length = 5 )`
 Gets the main color from an image.
 
-`wpip_get_image_colors`
+`wpip_get_image_colors( string $file, int $precision = 20, int $palette_length = 5 )`
 Gets the image color palette.
 
 == Installation ==
@@ -41,12 +41,6 @@ Gets the image color palette.
 1. Search for 'WP Image Color Palette'
 1. Activate WP Image Color Palette from your Plugins page.
 1. Go to “after activation” below.
-
-=== Manually ===
-
-1. Upload the `wp-image-color-palette` to the `/wp-content/plugins/` directory
-1. Activate the WP Image Color Palette plugin through the 'Plugins' menu in WordPress
-1. Go to "after activation" below.
 
 === After activation ===
 
@@ -74,6 +68,21 @@ A functionality for a bulk update is already on the roadmap.
 Only post types with 'custom-fields' support can be selected. Check your post type with the [post_type_support](https://codex.wordpress.org/Function_Reference/post_type_supports) function.
 
 == Changelog ==
+
+= 1.4 =
+
+Release Date: August 14th, 2017
+
+* Enhancements
+    * New bulk 'Update the Image Color Palette' action for your selected post type.
+    * Improved the debugging section in the admin area.
+        * Traffic lights status
+        * Human readable error list
+        * Settings dump for error reports
+    * Switched the precision input type in the Admin area into a select list.
+        * Decreased the default precision from 20 to 25.
+    * Added global functions to the README file.
+    * Added plugin assets for the WordPress.org SVN.
 
 = 1.3.1 =
 
@@ -111,3 +120,7 @@ Release Date: July 7th, 2017
 
 * Enhancements
 	* Added the 'Image Color Palette' settings page to the 'Tools' menu.
+
+== Upgrade Notice ==
+
+Enhancements and minor bugfixes. See https://github.com/mkronenfeld/WP-Image-Color-Palette/releases

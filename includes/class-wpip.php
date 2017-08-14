@@ -66,7 +66,7 @@ class Wpip {
 	 */
 	public function __construct() {
 		$this->plugin_name = 'wpip';
-		$this->version     = '1.3.1';
+		$this->version     = WPIP_VERSION;
 
 		$this->load_dependencies();
 		$this->define_public_hooks();
@@ -93,10 +93,9 @@ class Wpip {
 	 * @access   private
 	 */
 	private function load_dependencies() {
-		require_once WPIP_PATH . 'includes/wpip-global-functions.php';
-		require_once WPIP_PATH . 'includes/wpip-deprecated-functions.php';
 		require_once WPIP_PATH . 'includes/class-wpip-loader.php';
 		require_once WPIP_PATH . 'public/class-wpip-public.php';
+		require_once WPIP_PATH . 'public/class-wpip-validator.php';
 
 		if ( is_admin() ) {
 			require_once WPIP_PATH . 'admin/class-wpip-admin.php';
@@ -120,6 +119,12 @@ class Wpip {
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_sections' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'bulk_action_admin_notice' );
+
+		foreach ( WPIP_POST_TYPES as $post_type ) {
+			$this->loader->add_action( 'bulk_actions-edit-' . $post_type, $plugin_admin, 'register_bulk_actions' );
+			$this->loader->add_action( 'handle_bulk_actions-edit-' . $post_type, $plugin_admin, 'bulk_action_handler', 10, 3 );
+		}
 	}
 
 	/**

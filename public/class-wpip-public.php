@@ -32,7 +32,9 @@ class Wpip_Public {
 			$file      = get_the_post_thumbnail_url( $post_ID, 'post-thumbnail' );
 			$color_map = wpip_get_image_colors( $file );
 
-			update_post_meta( $post_ID, WPIP_POST_META_KEY_COLORS_RGB, $color_map );
+			if ( ! empty( $color_map ) ) {
+				update_post_meta( $post_ID, WPIP_POST_META_KEY_COLORS_RGB, $color_map );
+			}
 		}
 	}
 }
