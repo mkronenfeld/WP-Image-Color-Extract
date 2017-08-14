@@ -24,7 +24,7 @@ class Wpip_Validator extends Makro\ImagePalette\Validator {
 	protected $protocolErrorTranslations = [
 		'allow_url_fopen'                               => 'Your php.ini does not allow this app to access URL object like image files.',
 		'image_manipulation_library_available'          => 'There is no PHP image manipulation library (gd or imagick) available on your server.',
-		'selected_image_manipulation_library_available' => 'Your selected Graphics library is not available on your server. Please try another option'
+		'selected_image_manipulation_library_available' => 'Your selected Graphics library is not available on your server. Please try another option.'
 	];
 
 	/**

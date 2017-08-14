@@ -212,17 +212,22 @@ class Wpip_Admin {
 		add_settings_field(
 			'wpip-precision',
 			__( 'Precision', 'wpip' ),
-			array( $fields, 'number' ),
+			array( $fields, 'select' ),
 			$this->plugin_name,
 			$this->plugin_name . '-settings',
 			array(
 				'description' =>
-					__( 'By default, the plugin will analyse every 20th pixel. Increase it up to 100 to receive faster but less precise results.',
+					__( 'Adjust the accuracy and performance of the analyzer.',
 						'wpip' ),
 				'id'          => 'precision',
-				'value'       => ( isset ( $this->options['precision'] ) ) ? $this->options['precision'] : WPIP_PRECISION,
-				'max'         => 100,
-				'min'         => 10
+				'selections'  => [
+					'10'  => '10 - slow but precise',
+					'15'  => '20',
+					'25'  => '30 - just right',
+					'75'  => '40',
+					'150' => '50 - fast but imprecise'
+				],
+				'value'       => ( isset ( $this->options['precision'] ) ) ? $this->options['precision'] : WPIP_PRECISION
 			)
 		);
 

@@ -53,7 +53,7 @@ if ( ! defined( 'WPIP_POST_META_KEY_COLORS_RGB' ) ) {
 if ( ! defined( 'WPIP_PRECISION' ) ) {
 	define(
 		'WPIP_PRECISION',
-		( isset( $wpip_options['precision'] ) ) ? $wpip_options['precision'] : 20
+		( isset( $wpip_options['precision'] ) ) ? $wpip_options['precision'] : 25
 	);
 }
 
