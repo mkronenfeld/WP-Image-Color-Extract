@@ -71,10 +71,18 @@ Only post types with 'custom-fields' support can be selected. Check your post ty
 
 = 1.4 =
 
-Release Date: -
+Release Date: August 14th, 2017
 
 * Enhancements
-    * Decreased the wpip-precision max value from 150 to 100 to receive better color extraction results. However this will not affect the global php functions.
+    * New bulk 'Update the Image Color Palette' action for your selected post type.
+    * Improved the debugging section in the admin area.
+        * Traffic lights status
+        * Human readable error list
+        * Settings dump for error reports
+    * Switched the precision input type in the Admin area into a select list.
+        * Decreased the default precision from 20 to 25.
+    * Added global functions to the README file.
+    * Added plugin assets for the WordPress.org SVN.
 
 = 1.3.1 =
 
