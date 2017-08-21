@@ -1,6 +1,8 @@
 WP Image Color Palette
 ======================
 
+![Image Color Palette Banner](https://github.com/mkronenfeld/WP-Image-Color-Palette/blob/develop/assets/banner-1544x500.jpg)
+
 Welcome to the WP Image Color Palette repository
 ----------------------------------------------
 
