@@ -94,6 +94,7 @@ class Wpip {
 	 */
 	private function load_dependencies() {
 		require_once WPIP_PATH . 'includes/class-wpip-loader.php';
+		require_once WPIP_PATH . 'includes/class-wpip-i18n.php';
 		require_once WPIP_PATH . 'public/class-wpip-public.php';
 		require_once WPIP_PATH . 'public/class-wpip-validator.php';
 
@@ -141,15 +142,6 @@ class Wpip {
 	}
 
 	/**
-	 * Run the loader to execute all of the hooks with WordPress.
-	 *
-	 * @since    1.0.0
-	 */
-	public function run() {
-		$this->loader->run();
-	}
-
-	/**
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
@@ -178,5 +170,30 @@ class Wpip {
 	 */
 	public function get_version() {
 		return $this->version;
+	}
+
+	/**
+	 * Run the loader to execute all of the hooks with WordPress.
+	 *
+	 * @since    1.0.0
+	 * @return   void
+	 */
+	public function run() {
+		$this->loader->run();
+	}
+
+	/**
+	 * Define the locale for this plugin for internationalization.
+	 *
+	 * Uses the Wpip_i18n class in order to set the domain and to register the hook
+	 * with WordPress.
+	 *
+	 * @since    1.5.0
+	 * @return   void
+	 */
+	private function set_locale() {
+		$plugin_i18n = new Wpip_i18n();
+
+		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 	}
 }

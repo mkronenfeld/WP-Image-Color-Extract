@@ -15,6 +15,7 @@
  * @author     Marvin Kronenfeld <hello@wp-styles.de>
  */
 class Wpip_Validator extends Makro\ImagePalette\Validator {
+
 	/**
 	 * Human readable protocol translations.
 	 *

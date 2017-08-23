@@ -96,7 +96,7 @@ class Wpip_Admin {
 	 *
 	 * @return string
 	 */
-	function bulk_action_handler( $redirect_to, $action_name, $post_ids ) {
+	public function bulk_action_handler( $redirect_to, $action_name, $post_ids ) {
 		if ( 'update_image_color_palette' === $action_name ) {
 			$wpip_public = new Wpip_Public();
 
@@ -121,9 +121,9 @@ class Wpip_Admin {
 	 *
 	 * @return void
 	 */
-	function bulk_action_admin_notice() {
+	public function bulk_action_admin_notice() {
 		if ( ! empty( $_REQUEST['bulk_updated_posts'] ) ) {
-			$updated_count = intval( $_REQUEST['bulk_updated_posts'] );
+			$updated_count = (int) ( $_REQUEST['bulk_updated_posts'] );
 			printf( '<div id="message" class="updated fade">' .
 			        _n( 'Updated %s image color palette.',
 				        'Updated %s image color palettes.',
@@ -317,7 +317,7 @@ class Wpip_Admin {
 				case 'precision':
 					// breakthrough
 				case 'palette-length':
-					$sanitized_input[ $key ] = intval( $value );
+					$sanitized_input[ $key ] = (int) ( $value );
 					break;
 			}
 		}
